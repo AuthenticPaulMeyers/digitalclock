@@ -9,12 +9,14 @@
 
 		//get time from the local machine
 
-		const myDate = new Date(),
+		let myDate = new Date(),
 			  hours = myDate.getHours();
 			  minutes = myDate.getMinutes();
 			  seconds = myDate.getSeconds();
-
-			  minutes = addZero(minutes);	// Add string zero in front
+            
+              // Add string zero in front
+              hours = addZero(hours);
+			  minutes = addZero(minutes);	
 			  seconds = addZero(seconds);
 
 			  hr.textContent = hours;
