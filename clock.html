@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>digital clock</title>
+</head>
+
+<style>
+
+	body{
+		background: rgba(19, 19, 19, 1.0);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.container{
+		height: auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 150px auto;
+	}
+
+	.container .time-container{
+		background: rgb(19, 19, 50);
+		width: 200px;
+		padding: 10px;
+		margin-right: 10px;
+		border: none;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		font-size: 9rem;
+		color: white;
+		font-family: Poppins, arial;
+		box-shadow: 0 6px 5px rgba(0, 0, 0, 1.0);
+		text-align: center;
+		position: relative;
+
+	}
+
+	.container .time-container::before{
+		content: '';
+		background: linear-gradient(45deg, rgba(50, 255, 255), rgba(80, 80, 255));
+		position: absolute;
+		height: 8px;
+		top: 0;
+		right: 0;
+		width: 100%;
+	}
+
+	.container .time-min::before{
+		background: linear-gradient(45deg, rgba(200, 100, 80), rgba(70, 70, 255));
+	}
+
+	.container .time-sec::before{
+		background: linear-gradient(45deg, rgba(80, 80, 255), rgba(50, 255, 255));
+	}
+	@media(max-width: 990px){
+	.container .time-container{
+		width: 100px;
+		font-size: 4rem;
+	}
+
+	}
+</style>
+
+<body>
+
+<div class="container">
+	<div class="time-container hour"></div>
+	<div class="time-container time-min minutes"></div>
+	<div class="time-container time-sec seconds"></div>
+
+</div>
+
+
+
+<Script>
+	
+
+	// Variables
+	const hr =document.querySelector('.hour');
+	const mn =document.querySelector('.minutes');
+	const scs =document.querySelector('.seconds');
+
+
+	function displayTime(){
+
+		//get time from the local machine
+
+		const myDate = new Date(),
+			  hours = myDate.getHours();
+			  minutes = myDate.getMinutes();
+			  seconds = myDate.getSeconds();
+
+			  minutes = addZero(minutes);	// Add string zero in front
+			  seconds = addZero(seconds);
+
+			  hr.textContent = hours;
+			  mn.textContent = minutes;
+			  scs.textContent = seconds;
+
+	}setInterval("displayTime()", 1000);  // Display time after every second
+
+
+	// A function to add zero when minutes and seconds are less than zero
+	function addZero(zero){
+		if(zero < 10){
+			zero = '0' + zero;
+		}
+
+		return zero;
+	}
+
+</Script>
+</body>
+</html>
